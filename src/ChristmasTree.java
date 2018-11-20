@@ -3,27 +3,38 @@ import java.util.Scanner;
 
 public class ChristmasTree {
     public static void main( String[] args ) {
-        printTree( new Scanner( System.in ).nextInt() );
+        System.out.println(printTree( new Scanner( System.in ).nextInt() ));
     }
 
-    static void printTree( int levels ) {
+    static String printTree( int levels ) {
+        StringBuilder treeStr = new StringBuilder(  );
+
         if( levels > 0 ) {
             for( int i = 1; i <= levels; i++ )
-                printLevel( i, levels );
-            printLevel( 1, levels );
+                treeStr.append( printLevel( i, levels ) );
+            treeStr.append( printLevel( 1, levels ) );
         }
+
+        return treeStr.toString();
     }
 
 
-    static void printLevel( int level, int max ) {
-        int spaces = max - level;
-        int stars = level * 2 - 1;
+    static String printLevel( int level, int max ) {
+        StringBuilder levelStr = new StringBuilder(  );
 
-        while( spaces-- > 0 )
-            System.out.print( " " );
-        while( stars-- > 0 )
-            System.out.print( "*" );
+        if( level <= max){
+            int spaces = max - level;
+            int stars = level * 2 - 1;
 
-        System.out.println();
+            while( spaces-- > 0 )
+                levelStr.append( " " );
+            while( stars-- > 0 )
+                levelStr.append( "*" );
+
+            levelStr.append("\n");
+        }
+
+
+        return levelStr.toString();
     }
 }
